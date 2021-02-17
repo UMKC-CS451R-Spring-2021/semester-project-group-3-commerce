@@ -13,10 +13,10 @@ Application must include:
 
 ### Team
 - Zach Gharst (Database Administrator): [@ZDGharst](https://github.com/ZDGharst)
-- William Keke (Project Manager)
+- William Keke (Project Manager)[@WillKeke](https://github.com/willkeke)
 - Benaiah Kilen (Developer): [@benaiahk](https://github.com/benaiahk)
 - Atticus Parris (Developer): [@atparris](https://github.com/atparris)
-- Andrew Poitras (Developer)
+- Andrew Poitras (Developer): [@poitrasandrew](https://github.com/poitrasandrew)
 
 ### Technology Used
 HTML, CSS, JS, C#.NET MVC, MS SQL Server, xUnit
