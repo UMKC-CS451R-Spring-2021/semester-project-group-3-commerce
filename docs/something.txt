@@ -1,3 +1,6 @@
-## Different text file
+# SE_Tutorial
 
-# Done
+## Members
+Kendall Bingham
+
+Atticus Parris
