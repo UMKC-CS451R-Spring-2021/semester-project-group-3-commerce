@@ -14,5 +14,8 @@ namespace Commerce_WebApp.Models
 
     [Column(TypeName = "decimal(18,2)")]
     public decimal Value { get; set; }
-  }
+    public bool Notify_Text { get; set; }
+    public bool Notify_Email { get; set; }
+    public bool Notify_Web { get; set; }
+    }
 }
