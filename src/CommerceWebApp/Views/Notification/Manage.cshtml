@@ -1,0 +1,219 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Notification Management";
+}
+
+<link rel="stylesheet" href="~/css/NotificationManagement.css" />
+
+<div class="text-center">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="rule-container">
+
+            <!-- Rule Navigation -->
+            <ul class="nav nav-tabs" id="rule-tab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="balance-tab" data-toggle="tab" href="#balance" role="tab" aria-controls="balance" aria-selected="true">Balance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="withdrawal-tab" data-toggle="tab" href="#withdrawal" role="tab" aria-controls="withdrawal" aria-selected="false">Withdrawal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="deposit-tab" data-toggle="tab" href="#deposit" role="tab" aria-controls="deposit" aria-selected="false">Deposit</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="login-tab" data-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="false">Login</a>
+                </li>
+            </ul>
+            <!-- /Rule Navigation-->
+            <!-- Rule Configuration -->
+            <div class="tab-content" id="pills-tabContent">
+
+                <!-- Balance Condition -->
+                <div class="condition-container tab-pane fade show active" id="balance" role="tabpanel" aria-labelledby="balance-tab">
+                    <div class="condition-form form-group" style="text-align: left;">
+                        <label>Notify me when my balance goes... </label>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" style="float: left; margin-right: 15px; display: block;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Below
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Below</a>
+                                <a class="dropdown-item" href="#">Above</a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <input class="condition-input form-control" style="width: 150px; margin-left: 20px;" type="number" min="0.00" max="10000.00" step="0.01" />
+                        </div>
+
+                        <label>Using the message: </label>
+                        <textarea class="condition-input form-control" id="balanceMessage" rows="5" placeholder='"Your balance threshold condition has been triggered!"'></textarea>
+
+                        <label>Receive notification using: </label>
+                        <div class="method-checkbox-container">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="WebNotification" id="WebNotificationSwitch">
+                                <label class="form-check-label" for="WebNotificationSwitch">Web Notification</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="EmailNotification" id="EmailNotificationSwitch">
+                                <label class="form-check-label" for="EmailNotificationSwitch">Email Notification</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="SMSNotification" id="SMSNotificationSwitch">
+                                <label class="form-check-label" for="SMSNotificationSwitch">SMS Notification</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="add-button btn btn-primary" style="background-color: #006747;">Add Rule</button>
+                </div>
+                <!-- /Balance Condition-->
+                <!-- Withdrawal Condition -->
+                <div class="condition-container tab-pane fade" id="withdrawal" role="tabpanel" aria-labelledby="withdrawal-tab">
+                    <div class="condition-form form-group" style="text-align: left;">
+                        <label>Notify me when a withdrawal is made... </label>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" style="float: left; margin-right: 15px; display: block;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Greater than
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Greater than</a>
+                                <a class="dropdown-item" href="#">Less than</a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <input class="condition-input form-control" style="width: 150px; margin-left: 20px;" type="number" min="0.00" max="10000.00" step="0.01" />
+                        </div>
+
+                        <label>Using the message: </label>
+                        <textarea class="condition-input form-control" id="balanceMessage" rows="5" placeholder='"Your withdrawal threshold condition has been triggered!"'></textarea>
+
+                        <label>Receive notification using: </label>
+                        <div class="method-checkbox-container">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="WebNotification" id="WebNotificationSwitch">
+                                <label class="form-check-label" for="WebNotificationSwitch">Web Notification</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="EmailNotification" id="EmailNotificationSwitch">
+                                <label class="form-check-label" for="EmailNotificationSwitch">Email Notification</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="SMSNotification" id="SMSNotificationSwitch">
+                                <label class="form-check-label" for="SMSNotificationSwitch">SMS Notification</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="add-button btn btn-primary" style="background-color: #006747;">Add Rule</button>
+                </div>
+                <!-- /Withdrawal Condition -->
+                <!-- Deposit Condition -->
+                <div class="condition-container tab-pane fade" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
+                    <div class="condition-form form-group" style="text-align: left;">
+                        <label>Notify me when a deposit is made... </label>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" style="float: left; margin-right: 15px; display: block;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Greater than
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Greater than</a>
+                                <a class="dropdown-item" href="#">Less than</a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <input class="condition-input form-control" style="width: 150px; margin-left: 20px;" type="number" min="0.00" max="10000.00" step="0.01" />
+                        </div>
+                    </div>
+
+                    <label>Using the message: </label>
+                    <textarea class="condition-input form-control" id="balanceMessage" rows="5" placeholder='"Your deposit threshold condition has been triggered!"'></textarea>
+
+                    <label>Receive notification using: </label>
+                    <div class="method-checkbox-container">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" value="WebNotification" id="WebNotificationSwitch">
+                            <label class="form-check-label" for="WebNotificationSwitch">Web Notification</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" value="EmailNotification" id="EmailNotificationSwitch">
+                            <label class="form-check-label" for="EmailNotificationSwitch">Email Notification</label>
+                        </div>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" value="SMSNotification" id="SMSNotificationSwitch">
+                            <label class="form-check-label" for="SMSNotificationSwitch">SMS Notification</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="add-button btn btn-primary" style="background-color: #006747;">Add Rule</button>
+                </div>
+                <!-- /Deposit Condition -->
+                <!-- Login Condition -->
+                <div class="condition-container tab-pane fade" id="login" role="tabpanel" aria-labelledby="login-tab">
+                    <div class="condition-form form-group" style="text-align: left;">
+                        <label>Notify me when a user logs into my account using the message: </label>
+                        <textarea class="condition-input form-control" id="balanceMessage" rows="5" placeholder='"A user has logged into your account!"'></textarea>
+
+                        <label>Receive notification using: </label>
+                        <div class="method-checkbox-container">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="WebNotification" id="WebNotificationSwitch">
+                                <label class="form-check-label" for="WebNotificationSwitch">Web Notification</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="EmailNotification" id="EmailNotificationSwitch">
+                                <label class="form-check-label" for="EmailNotificationSwitch">Email Notification</label>
+                            </div>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="SMSNotification" id="SMSNotificationSwitch">
+                                <label class="form-check-label" for="SMSNotificationSwitch">SMS Notification</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="add-button btn btn-primary" style="background-color: #006747;">Add Rule</button>
+                </div>
+                <!-- /Login Condition -->
+
+            </div>
+            <!-- /Rule Configuraiton -->
+
+
+            <!-- Active Rules -->
+            <div class="table-container">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Type</th>
+                            <th scope="col">Condition</th>
+                            <th scope="col">Value</th>
+                            <th scope="col">Notify Method(s)</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Balance</td>
+                            <td>Below</td>
+                            <td>$10.00</td>
+                            <td>Email, Web</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- /Active Rules -->
+        </div>
+    }
+    else
+    {
+        <h1>@ViewData["Title"]</h1>
+        <h4>Please sign in to view this page.</h4>
+    }
+</div>
