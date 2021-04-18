@@ -11,6 +11,7 @@ namespace Commerce_WebApp.Models
     public string Customer_Id { get; set; }
     public string Type { get; set; }
     public string Condition { get; set; }
+    public string Message { get; set; }
 
     [Column(TypeName = "decimal(18,2)")]
     public decimal Value { get; set; }
