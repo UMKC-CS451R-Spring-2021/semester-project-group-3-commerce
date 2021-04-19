@@ -34,7 +34,6 @@
     <div class="tab-content" id="pills-tabContent">
         <!-- Balance Condition -->
         <form asp-action="Create" class="condition-container tab-pane fade show active" id="balance" role="tabpanel" aria-labelledby="balance-tab">
-            <input asp-for="Customer_Id" type="hidden" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
             <input asp-for="Type" type="hidden" value="Balance" />
 
             <div class="form-group">
@@ -75,7 +74,6 @@
         <!-- /Balance Condition-->
         <!-- Withdrawal Condition -->
         <form asp-action="Create" class="condition-container tab-pane fade" id="withdrawal" role="tabpanel" aria-labelledby="withdrawal-tab">
-            <input asp-for="Customer_Id" type="hidden" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
             <input asp-for="Type" type="hidden" value="Withdrawal" />
 
             <div class="form-group">
@@ -84,7 +82,7 @@
                     <option value="Above" class="btn btn-light">Above</option>
                     <option value="Below" class="btn btn-light">Below</option>
                 </select>
-                <input asp-for="Value" type="number" value="0.00" class="condition-input form-control" style="width: 150px; margin-left: 20px;" min="0.00" max="10000.00" step="0.01" />
+                <input asp-for="Value" type="number" value="0.00" class="condition-input form-control" style="width: 150px; margin-left: 20px;" min="0.01" max="10000.00" step="0.01" />
                 <span asp-validation-for="Value" class="text-danger"></span>
             </div>
 
@@ -116,7 +114,6 @@
         <!-- /Withdrawal Condition -->
         <!-- Deposit Condition -->
         <form asp-action="Create" class="condition-container tab-pane fade" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
-            <input asp-for="Customer_Id" type="hidden" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
             <input asp-for="Type" type="hidden" value="Deposit" />
 
             <div class="form-group">
@@ -125,7 +122,7 @@
                     <option value="Above" class="btn btn-light">Above</option>
                     <option value="Below" class="btn btn-light">Below</option>
                 </select>
-                <input asp-for="Value" type="number" value="0.00" class="condition-input form-control" style="width: 150px; margin-left: 20px;" min="0.00" max="10000.00" step="0.01" />
+                <input asp-for="Value" type="number" value="0.00" class="condition-input form-control" style="width: 150px; margin-left: 20px;" min="0.01" max="10000.00" step="0.01" />
                 <span asp-validation-for="Value" class="text-danger"></span>
             </div>
 
@@ -157,7 +154,6 @@
         <!-- /Deposit Condition -->
         <!-- Login Condition -->
         <form asp-action="Create" class="condition-container tab-pane fade" id="login" role="tabpanel" aria-labelledby="login-tab">
-            <input asp-for="Customer_Id" type="hidden" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" />
             <input asp-for="Type" type="hidden" value="Login" />
             <input asp-for="Condition" type="hidden" value="NA" />
             <input asp-for="Value" type="hidden" value="0.00" />
